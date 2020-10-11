@@ -5,11 +5,13 @@ This is a quickstart project with neural networks the idea behind is to learn an
 
 ### Environment
 ```
+- conda
 - python 3.8.3
 - jupyter
 - numpy 
 - sklearn
 - plotly
+- plotly-orca (for static rendering of charts)
 ```
 
 ### Runnable Command
