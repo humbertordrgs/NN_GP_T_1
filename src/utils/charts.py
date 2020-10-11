@@ -1,4 +1,6 @@
 import plotly.graph_objects as go
+import plotly.io as pio
+pio.renderers.default='notebook'
 
 def create_figure():
     return go.Figure()
