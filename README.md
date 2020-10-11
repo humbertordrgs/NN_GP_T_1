@@ -1,10 +1,6 @@
 # Neuronal Network and Genetic Programming Task 1  
-
-## <div style="text-align: left"> 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]() 
-</div>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](asdasd.asdas)
 <br>
- 
 
 This is a quickstart project with neural networks the idea behind is to learn and understand the different processes that happen inside one of these models. It is important to notice that topics like backpropagation and activation functions are not part of this Task.
 
