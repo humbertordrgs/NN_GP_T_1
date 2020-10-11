@@ -44,13 +44,13 @@ def forward_prop(X, parameters):
 
 # Evaluate the error (i.e., cost) between the prediction made in A2 and the provided labels Y 
 # We use the Mean Square Error cost function
-def calculate_cost(A2, Y):
+def calculate_cost(A2, Y, m):
     # m is the number of examples
-    cost = np.sum((0.5 * (A2 - Y) ** 2).mean(axis=1))/m
+    cost = np.sum(((A2 - Y) ** 2).mean(axis=1))/m
     return cost
 
 # Apply the backpropagation
-def backward_prop(X, Y, cache, parameters):
+def backward_prop(X, Y, cache, parameters, m):
     A1 = cache["A1"]
     A2 = cache["A2"]
 
@@ -108,31 +108,28 @@ def update_parameters(parameters, grads, learning_rate):
 # n_y: number of neurons in the output layer (this value impacts how Y is shaped)
 def model(X, Y, n_x, n_h, n_y, num_of_iters, learning_rate):
     parameters = initialize_parameters(n_x, n_h, n_y)
+    historic_cost = []
     for i in range(0, num_of_iters+1):
+        m = X.shape[1]
         a2, cache = forward_prop(X, parameters)
-        cost = calculate_cost(a2, Y)
-        grads = backward_prop(X, Y, cache, parameters)
+        cost = calculate_cost(a2, Y, m)
+        
+        grads = backward_prop(X, Y, cache, parameters, m)
         parameters = update_parameters(parameters, grads, learning_rate)
-        if(i%100 == 0):
-        print('Cost after iteration# {:d}: {:f}'.format(i, cost))
+        if(i%50 == 0):
+            historic_cost.append(cost)
+        #     print('Cost after iteration# {:d}: {:f}'.format(i, cost))
 
-    return parameters
+    return parameters,historic_cost
 
 # Make a prediction
 # X: represents the inputs
 # parameters: represents a model
 # the result is the prediction
 def predict(X, parameters):
-    a2, cache = forward_prop(X, parameters)
-    yhat = a2
-    yhat = np.squeeze(yhat)
-    if(yhat >= 0.5):
-        y_predict = 1
-    else:
-        y_predict = 0
-
+    y_predict, cache = forward_prop(X, parameters)
     return y_predict
-
+    
 # # Set the seed to make result reproducible
 # np.random.seed(42)
 
