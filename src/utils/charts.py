@@ -1,6 +1,9 @@
 import plotly.graph_objects as go
 import plotly.io as pio
-pio.renderers.default='notebook'
+
+# This is a workaround to keep plotly charts visible in github repo
+# Comment this next line for interactive charts
+pio.renderers.default='svg'
 
 def create_figure():
     return go.Figure()
