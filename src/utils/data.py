@@ -18,7 +18,7 @@ def fold_data(data, k=10):
     fold_size = total_elems // k
     res = []
     for i in range(0, total_elems, fold_size):
-        if (i//fold_size) < k:
+        if (i//fold_size) < k - 1:
             res.append(data[i:i+fold_size])
         else:
             res.append(data[i:])
@@ -41,7 +41,7 @@ def normalization(data, lower_bound=0, higher_bound=1):
         (
             current_max - current_min
         )
-    )
+    ) + lower_bound
 
 def one_hot(y, n_cls):
     cls = []
